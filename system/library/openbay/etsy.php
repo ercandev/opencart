@@ -123,22 +123,13 @@ final class Etsy {
 	}
 
 	public function encryptArgs($data) {
-		$token = $this->openbay->pbkdf2($this->enc1, $this->enc2, 1000, 32);
-		$crypt = $this->openbay->encrypt($data, $token, true);
+		$crypt = $this->openbay->encrypt($data, $this->enc1, $this->enc2, true);
 
 		return $crypt;
 	}
 
 	public function decryptArgs($crypt, $is_base_64 = true) {
-		if ($is_base_64) {
-			$crypt = base64_decode($crypt, true);
-			if (!$crypt) {
-				return false;
-			}
-		}
-
-		$token = $this->openbay->pbkdf2($this->enc1, $this->enc2, 1000, 32);
-		$data = $this->openbay->decrypt($crypt, $token);
+		$data = $this->openbay->decrypt($crypt, $this->enc1, $this->enc2, $is_base_64);
 
 		return $data;
 	}
