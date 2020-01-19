@@ -8,12 +8,18 @@ class ModelToolImage extends Model {
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 
 		$image_old = $filename;
-		$image_new = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . $width . 'x' . $height . '.' . $extension;
+		$image_new = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . (int)$width . 'x' . (int)$height . '.' . $extension;
 
 		if (!is_file(DIR_IMAGE . $image_new) || (filectime(DIR_IMAGE . $image_old) > filectime(DIR_IMAGE . $image_new))) {
 			list($width_orig, $height_orig, $image_type) = getimagesize(DIR_IMAGE . $image_old);
-				 
-			if (!in_array($image_type, array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF))) { 
+
+			$image_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+
+			if (phpversion() >= '7.1') {
+				$image_types[] = IMAGETYPE_WEBP;
+			}
+
+			if (!in_array($image_type, $image_types)) {
 				return DIR_IMAGE . $image_old;
 			}
  

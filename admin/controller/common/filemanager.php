@@ -45,7 +45,11 @@ class ControllerCommonFileManager extends Controller {
 			}
 
 			// Get files
-			$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+			if (phpversion() >= '7.1') {
+				$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,webp,JPG,JPEG,PNG,GIF,WEBP}', GLOB_BRACE);
+			} else {
+				$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+			}
 
 			if (!$files) {
 				$files = array();
@@ -258,6 +262,10 @@ class ControllerCommonFileManager extends Controller {
 						'gif',
 						'png'
 					);
+
+					if (phpversion() >= '7.1') {
+						$allowed[] = 'webp';
+					}
 	
 					if (!in_array(utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
 						$json['error'] = $this->language->get('error_filetype');
@@ -271,6 +279,10 @@ class ControllerCommonFileManager extends Controller {
 						'image/x-png',
 						'image/gif'
 					);
+
+                    if (phpversion() >= '7.1') {
+                        $allowed[] = 'image/webp';
+                    }
 	
 					if (!in_array($file['type'], $allowed)) {
 						$json['error'] = $this->language->get('error_filetype');
