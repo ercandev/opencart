@@ -40,6 +40,7 @@ $_['entry_isbn']             = 'ISBN';
 $_['entry_mpn']              = 'MPN';
 $_['entry_location']         = 'Location';
 $_['entry_shipping']         = 'Requires Shipping';
+$_['entry_free_shipping']    = 'Free Shipping';
 $_['entry_manufacturer']     = 'Manufacturer';
 $_['entry_store']            = 'Stores';
 $_['entry_date_available']   = 'Date Available';

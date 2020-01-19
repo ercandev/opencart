@@ -17,6 +17,10 @@ class ModelExtensionShippingFree extends Model {
 			$status = false;
 		}
 
+		if ($this->cart->hasFreeShipping()) {
+			$status = true;
+		}
+
 		$method_data = array();
 
 		if ($status) {

@@ -231,6 +231,29 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label"><?php echo $entry_free_shipping; ?></label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <?php if ($free_shipping) { ?>
+                    <input type="radio" name="free_shipping" value="1" checked="checked" />
+                    <?php echo $text_yes; ?>
+                    <?php } else { ?>
+                    <input type="radio" name="free_shipping" value="1" />
+                    <?php echo $text_yes; ?>
+                    <?php } ?>
+                  </label>
+                  <label class="radio-inline">
+                    <?php if (!$free_shipping) { ?>
+                    <input type="radio" name="free_shipping" value="0" checked="checked" />
+                    <?php echo $text_no; ?>
+                    <?php } else { ?>
+                    <input type="radio" name="free_shipping" value="0" />
+                    <?php echo $text_no; ?>
+                    <?php } ?>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" class="form-control" />

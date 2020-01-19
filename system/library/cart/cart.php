@@ -241,6 +241,7 @@ class Cart {
 					'name'            => $product_query->row['name'],
 					'model'           => $product_query->row['model'],
 					'shipping'        => $product_query->row['shipping'],
+					'free_shipping'   => $product_query->row['free_shipping'],
 					'image'           => $product_query->row['image'],
 					'option'          => $option_data,
 					'download'        => $download_data,
@@ -394,6 +395,16 @@ class Cart {
 
 		return false;
 	}
+
+    public function hasFreeShipping() {
+        foreach ($this->getProducts() as $product) {
+            if ($product['free_shipping']) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 	public function hasDownload() {
 		foreach ($this->getProducts() as $product) {
