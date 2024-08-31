@@ -27,6 +27,10 @@ class Language {
 		array_merge($this->data, $data);
 	}
 			
+	public function clear() {
+	  $this->data = [];
+	}
+	
 	public function load($filename, &$data = array()) {
 		$_ = array();
 

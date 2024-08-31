@@ -27,7 +27,7 @@ class Router extends \Opencart\System\Engine\Controller {
 		$output = $action->execute($this->registry, $data);
 		
 		// Trigger the post events
-		$result = $this->event->trigger('controller/' . $route . '/after', array(&$route, &$output));
+		$result = $this->event->trigger('controller/' . $route . '/after', array(&$route, &$data, &$output));
 		
 		if (!is_null($result)) {
 			return $result;

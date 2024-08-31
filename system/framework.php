@@ -22,8 +22,10 @@ $registry->set('event', $event);
 
 // Event Register
 if ($config->has('action_event')) {
-	foreach ($config->get('action_event') as $key => $value) {
-	  $event->register($key, new \Opencart\System\Engine\Action($value));
+	foreach ($config->get('action_event') as $key => $values) {
+	  foreach ($values as $value) {
+	   $event->register($key, new \Opencart\System\Engine\Action($value));
+	  }
 	}
 }
 
