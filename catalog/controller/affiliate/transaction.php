@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliateTransaction extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Transaction extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->affiliate->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('affiliate/transaction', '', true);
@@ -68,7 +69,7 @@ class ControllerAffiliateTransaction extends Controller {
 			);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;

@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionFraudMaxMind extends Model {
+namespace Opencart\Catalog\Model\Extension\Fraud;
+class MaxMind extends \Opencart\System\Engine\Model {
 	public function check($order_info) {
 		$risk_score = 0;
 

@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionExtension extends Model {
+namespace Opencart\Admin\Model\Extension;
+class Extension extends \Opencart\System\Engine\Model {
 	public function getInstalled($type) {
 		$extension_data = array();
 

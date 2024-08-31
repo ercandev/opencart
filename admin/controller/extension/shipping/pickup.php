@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionShippingPickup extends Controller {
+namespace Opencart\Admin\Controller\Extension\Shipping;
+class Pickup extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

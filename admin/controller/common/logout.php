@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonLogout extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class Logout extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->user->logout();
 

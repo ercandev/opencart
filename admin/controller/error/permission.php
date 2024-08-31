@@ -1,5 +1,6 @@
 <?php
-class ControllerErrorPermission extends Controller {
+namespace Opencart\Admin\Controller\Error;
+class Permission extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('error/permission');
 

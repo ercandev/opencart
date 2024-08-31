@@ -1,5 +1,6 @@
 <?php
-class ModelSaleVoucher extends Model {
+namespace Opencart\Admin\Model\Sale;
+class Voucher extends \Opencart\System\Engine\Model {
 	public function addVoucher($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "voucher SET code = '" . $this->db->escape($data['code']) . "', from_name = '" . $this->db->escape($data['from_name']) . "', from_email = '" . $this->db->escape($data['from_email']) . "', to_name = '" . $this->db->escape($data['to_name']) . "', to_email = '" . $this->db->escape($data['to_email']) . "', voucher_theme_id = '" . (int)$data['voucher_theme_id'] . "', message = '" . $this->db->escape($data['message']) . "', amount = '" . (float)$data['amount'] . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
 
@@ -87,7 +88,7 @@ class ModelSaleVoucher extends Model {
 			if ($order_info) {
 				$this->load->model('localisation/language');
 
-				$language = new Language($order_info['language_code']);
+				$language = new \Opencart\System\Library\Language($order_info['language_code']);
 				$language->load($order_info['language_code']);
 				$language->load('mail/voucher');
 
@@ -116,7 +117,7 @@ class ModelSaleVoucher extends Model {
 				$data['store_url'] = $order_info['store_url'];
 				$data['message'] = nl2br($voucher_info['message']);
 
-				$mail = new Mail();
+				$mail = new \Opencart\System\Library\Mail();
 				$mail->protocol = $this->config->get('config_mail_protocol');
 				$mail->parameter = $this->config->get('config_mail_parameter');
 				$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
@@ -160,7 +161,7 @@ class ModelSaleVoucher extends Model {
 				$data['store_url'] = HTTP_CATALOG;
 				$data['message'] = nl2br($voucher_info['message']);
 
-				$mail = new Mail();
+				$mail = new \Opencart\System\Library\Mail();
 				$mail->protocol = $this->config->get('config_mail_protocol');
 				$mail->parameter = $this->config->get('config_mail_parameter');
 				$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

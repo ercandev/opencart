@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliateAccount extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Account extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->affiliate->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('affiliate/account', '', true);

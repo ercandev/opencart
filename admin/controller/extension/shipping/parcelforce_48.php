@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionShippingParcelforce48 extends Controller {
+namespace Opencart\Admin\Controller\Extension\Shipping;
+class Parcelforce48 extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

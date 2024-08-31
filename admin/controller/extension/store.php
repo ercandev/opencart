@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionStore extends Controller {
+namespace Opencart\Admin\Controller\Extension;
+class Store extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('extension/store');
 

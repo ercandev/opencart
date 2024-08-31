@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionShippingCitylink extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class Citylink extends \Opencart\System\Engine\Model {
 	function getQuote($address) {
 		$this->load->language('extension/shipping/citylink');
 

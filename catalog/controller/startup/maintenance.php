@@ -1,5 +1,8 @@
 <?php
-class ControllerStartupMaintenance extends Controller {
+namespace Opencart\Catalog\Controller\Startup;
+class Maintenance extends \Opencart\System\Engine\Controller {
+  private $user;
+  
 	public function index() {
 		if ($this->config->get('config_maintenance')) {
 			// Route
@@ -15,10 +18,10 @@ class ControllerStartupMaintenance extends Controller {
 			);
 			
 			// Show site if logged in as admin
-			$this->user = new Cart\User($this->registry);
+			$this->user = new \Opencart\System\Library\User($this->registry);
 
 			if ((substr($route, 0, 7) != 'payment' && substr($route, 0, 3) != 'api') && !in_array($route, $ignore) && !$this->user->isLogged()) {
-				return new Action('common/maintenance');
+				return new \Opencart\System\Engine\Action('common/maintenance');
 			}
 		}
 	}

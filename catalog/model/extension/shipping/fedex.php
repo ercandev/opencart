@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionShippingFedex extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class Fedex extends \Opencart\System\Engine\Model {
 	function getQuote($address) {
 		$this->load->language('extension/shipping/fedex');
 
@@ -160,7 +161,7 @@ class ModelExtensionShippingFedex extends Model {
 			
 			curl_close($curl);
 
-			$dom = new DOMDocument('1.0', 'UTF-8');
+			$dom = new \DOMDocument('1.0', 'UTF-8');
 			$dom->loadXml($response);
 
 			if ($dom->getElementsByTagName('faultcode')->length > 0) {

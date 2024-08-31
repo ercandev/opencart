@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionFraudMaxMind extends Model {
+namespace Opencart\Admin\Model\Extension\Fraud;
+class MaxMind extends \Opencart\System\Engine\Model {
 	public function install() {
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "maxmind` (

@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionShippingUPS extends Controller {
+namespace Opencart\Admin\Controller\Extension\Shipping;
+class UPS extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

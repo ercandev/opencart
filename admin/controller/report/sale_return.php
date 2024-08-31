@@ -1,5 +1,6 @@
 <?php
-class ControllerReportSaleReturn extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class SaleReturn extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/sale_return');
 
@@ -69,7 +70,7 @@ class ControllerReportSaleReturn extends Controller {
 			'href' => $this->url->link('report/sale_return', 'token=' . $this->session->data['token'] . $url, true)
 		);
 
-		$this->load->model('report/return');
+		$this->load->model('report/returns');
 
 		$data['returns'] = array();
 
@@ -82,9 +83,9 @@ class ControllerReportSaleReturn extends Controller {
 			'limit'                   => $this->config->get('config_limit_admin')
 		);
 
-		$return_total = $this->model_report_return->getTotalReturns($filter_data);
+		$return_total = $this->model_report_returns->getTotalReturns($filter_data);
 
-		$results = $this->model_report_return->getReturns($filter_data);
+		$results = $this->model_report_returns->getReturns($filter_data);
 
 		foreach ($results as $result) {
 			$data['returns'][] = array(
@@ -159,7 +160,7 @@ class ControllerReportSaleReturn extends Controller {
 			$url .= '&filter_return_status_id=' . $this->request->get['filter_return_status_id'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $return_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

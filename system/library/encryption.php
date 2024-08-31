@@ -1,5 +1,6 @@
 <?php
-final class Encryption {
+namespace Opencart\System\Library;
+class Encryption {
 	private $key;
 
 	public function __construct($key) {

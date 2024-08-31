@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliateForgotten extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Forgotten extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -26,7 +27,7 @@ class ControllerAffiliateForgotten extends Controller {
 			$message .= $this->language->get('text_password') . "\n\n";
 			$message .= $password;
 
-			$mail = new Mail();
+			$mail = new \Opencart\System\Library\Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

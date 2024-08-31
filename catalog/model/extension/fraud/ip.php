@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionFraudIp extends Model {
+namespace Opencart\Catalog\Model\Extension\Fraud;
+class Ip extends \Opencart\System\Engine\Model {
     public function check($order_info) {
         $this->load->model('account/customer');
 

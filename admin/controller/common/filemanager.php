@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonFileManager extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class FileManager extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('common/filemanager');
 
@@ -192,7 +193,7 @@ class ControllerCommonFileManager extends Controller {
 			$url .= '&thumb=' . $this->request->get['thumb'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $image_total;
 		$pagination->page = $page;
 		$pagination->limit = 16;

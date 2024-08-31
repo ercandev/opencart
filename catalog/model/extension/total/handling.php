@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionTotalHandling extends Model {
+namespace Opencart\Catalog\Model\Extension\Total;
+class Handling extends \Opencart\System\Engine\Model {
 	public function getTotal($total) {
 		if (($this->cart->getSubTotal() > $this->config->get('handling_total')) && ($this->cart->getSubTotal() > 0)) {
 			$this->load->language('extension/total/handling');

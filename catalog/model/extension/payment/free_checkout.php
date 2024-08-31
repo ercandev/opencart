@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionPaymentFreeCheckout extends Model {
+namespace Opencart\Catalog\Model\Extension\Payment;
+class FreeCheckout extends \Opencart\System\Engine\Model {
 	public function getMethod($address, $total) {
 		$this->load->language('extension/payment/free_checkout');
 

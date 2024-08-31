@@ -38,7 +38,14 @@ $_['cache_expire']         = 3600;
 
 // Session
 $_['session_autostart']    = true;
-$_['session_name']         = 'PHPSESSID';
+$_['session_engine']       = 'file'; // db or file
+$_['session_name']         = 'OCSESSID';
+$_['session_domain']       = '';
+$_['session_path']         = !empty($_SERVER['PHP_SELF']) ? rtrim(dirname($_SERVER['PHP_SELF']), '/') . '/' : '/';
+$_['session_expire']       = 86400;
+$_['session_probability']  = 1;
+$_['session_divisor']      = 5;
+$_['session_samesite']     = 'Strict';
 
 // Template
 $_['template_type']        = 'php';

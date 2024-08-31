@@ -1,5 +1,6 @@
 <?php
-class ControllerProductProduct extends Controller {
+namespace Opencart\Catalog\Controller\Product;
+class Product extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -583,7 +584,7 @@ class ControllerProductProduct extends Controller {
 			);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $review_total;
 		$pagination->page = $page;
 		$pagination->limit = 5;

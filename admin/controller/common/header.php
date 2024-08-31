@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonHeader extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class Header extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$data['title'] = $this->document->getTitle();
 
@@ -63,13 +64,13 @@ class ControllerCommonHeader extends Controller {
 			$data['complete_status'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_order_status=' . implode(',', $this->config->get('config_complete_status')), true);
 
 			// Returns
-			$this->load->model('sale/return');
+			$this->load->model('sale/returns');
 
-			$return_total = $this->model_sale_return->getTotalReturns(array('filter_return_status_id' => $this->config->get('config_return_status_id')));
+			$return_total = $this->model_sale_returns->getTotalReturns(array('filter_return_status_id' => $this->config->get('config_return_status_id')));
 
 			$data['return_total'] = $return_total;
 
-			$data['return'] = $this->url->link('sale/return', 'token=' . $this->session->data['token'], true);
+			$data['return'] = $this->url->link('sale/returns', 'token=' . $this->session->data['token'], true);
 
 			// Customers
 			$this->load->model('report/customer');

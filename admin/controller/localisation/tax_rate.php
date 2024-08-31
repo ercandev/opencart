@@ -1,5 +1,6 @@
 <?php
-class ControllerLocalisationTaxRate extends Controller {
+namespace Opencart\Admin\Controller\Localisation;
+class TaxRate extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -251,7 +252,7 @@ class ControllerLocalisationTaxRate extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $tax_rate_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

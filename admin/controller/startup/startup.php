@@ -1,5 +1,6 @@
 <?php
-class ControllerStartupStartup extends Controller {
+namespace Opencart\Admin\Controller\Startup;
+class Startup extends \Opencart\System\Engine\Controller {
 	public function index() {
 		// Settings
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0'");
@@ -20,21 +21,21 @@ class ControllerStartupStartup extends Controller {
 		}
 		
 		// Language
-		$language = new Language($this->config->get('config_admin_language'));
+		$language = new \Opencart\System\Library\Language($this->config->get('config_admin_language'));
 		$language->load($this->config->get('config_admin_language'));
 		$this->registry->set('language', $language);
 		
 		// Customer
-		$this->registry->set('customer', new Cart\Customer($this->registry));
+		$this->registry->set('customer', new \Opencart\System\Library\Customer($this->registry));
 		
 		// Affiliate
-		$this->registry->set('affiliate', new Cart\Affiliate($this->registry));
+		$this->registry->set('affiliate', new \Opencart\System\Library\Affiliate($this->registry));
 
 		// Currency
-		$this->registry->set('currency', new Cart\Currency($this->registry));
+		$this->registry->set('currency', new \Opencart\System\Library\Currency($this->registry));
 	
 		// Tax
-		$this->registry->set('tax', new Cart\Tax($this->registry));
+		$this->registry->set('tax', new \Opencart\System\Library\Tax($this->registry));
 		
 		if ($this->config->get('config_tax_default') == 'shipping') {
 			$this->tax->setShippingAddress($this->config->get('config_country_id'), $this->config->get('config_zone_id'));
@@ -47,18 +48,15 @@ class ControllerStartupStartup extends Controller {
 		$this->tax->setStoreAddress($this->config->get('config_country_id'), $this->config->get('config_zone_id'));
 
 		// Weight
-		$this->registry->set('weight', new Cart\Weight($this->registry));
+		$this->registry->set('weight', new \Opencart\System\Library\Weight($this->registry));
 		
 		// Length
-		$this->registry->set('length', new Cart\Length($this->registry));
+		$this->registry->set('length', new \Opencart\System\Library\Length($this->registry));
 		
 		// Cart
-		$this->registry->set('cart', new Cart\Cart($this->registry));
+		$this->registry->set('cart', new \Opencart\System\Library\Cart($this->registry));
 		
 		// Encryption
-		$this->registry->set('encryption', new Encryption($this->config->get('config_encryption')));
-		
-		// OpenBay Pro
-		$this->registry->set('openbay', new Openbay($this->registry));					
+		$this->registry->set('encryption', new \Opencart\System\Library\Encryption($this->config->get('config_encryption')));			
 	}
 }

@@ -1,5 +1,6 @@
 <?php
-class ControllerToolUpload extends Controller {
+namespace Opencart\Catalog\Controller\Tool;
+class Upload extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('tool/upload');
 

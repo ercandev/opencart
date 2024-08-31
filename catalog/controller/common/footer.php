@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonFooter extends Controller {
+namespace Opencart\Catalog\Controller\Common;
+class Footer extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('common/footer');
 
@@ -34,7 +35,7 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['contact'] = $this->url->link('information/contact');
-		$data['return'] = $this->url->link('account/return/add', '', true);
+		$data['return'] = $this->url->link('account/returns/add', '', true);
 		$data['sitemap'] = $this->url->link('information/sitemap');
 		$data['manufacturer'] = $this->url->link('product/manufacturer');
 		$data['voucher'] = $this->url->link('account/voucher', '', true);

@@ -1,5 +1,6 @@
 <?php
-class ControllerReportProductPurchased extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class ProductPurchased extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/product_purchased');
 
@@ -122,7 +123,7 @@ class ControllerReportProductPurchased extends Controller {
 			$url .= '&filter_order_status_id=' . $this->request->get['filter_order_status_id'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

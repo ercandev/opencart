@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutGuestShipping extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class GuestShipping extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
 

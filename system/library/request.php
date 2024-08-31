@@ -1,4 +1,5 @@
 <?php
+namespace Opencart\System\Library;
 class Request {
 	public $get = array();
 	public $post = array();
@@ -9,7 +10,6 @@ class Request {
 	public function __construct() {
 		$this->get = $this->clean($_GET);
 		$this->post = $this->clean($_POST);
-		$this->request = $this->clean($_REQUEST);
 		$this->cookie = $this->clean($_COOKIE);
 		$this->files = $this->clean($_FILES);
 		$this->server = $this->clean($_SERVER);

@@ -1,5 +1,6 @@
 <?php
-class ModelCatalogOption extends Model {
+namespace Opencart\Admin\Model\Catalog;
+class Option extends \Opencart\System\Engine\Model {
 	public function addOption($data) {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "option` SET type = '" . $this->db->escape($data['type']) . "', sort_order = '" . (int)$data['sort_order'] . "'");
 

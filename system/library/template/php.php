@@ -1,6 +1,6 @@
 <?php
-namespace Template;
-final class PHP {
+namespace Opencart\System\Library\Template;
+class PHP {
 	private $data = array();
 	
 	public function set($key, $value) {

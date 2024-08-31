@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonColumnRight extends Controller {
+namespace Opencart\Catalog\Controller\Common;
+class ColumnRight extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->model('design/layout');
 

@@ -1,5 +1,6 @@
 <?php
-class ControllerReportProductViewed extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class ProductViewed extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/product_viewed');
 
@@ -98,7 +99,7 @@ class ControllerReportProductViewed extends Controller {
 			$data['success'] = '';
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

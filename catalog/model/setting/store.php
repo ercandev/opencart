@@ -1,5 +1,6 @@
 <?php
-class ModelSettingStore extends Model {
+namespace Opencart\Catalog\Model\Setting;
+class Store extends \Opencart\System\Engine\Model {
 	public function getStores($data = array()) {
 		$store_data = $this->cache->get('store');
 

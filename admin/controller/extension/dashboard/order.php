@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionDashboardOrder extends Controller {
+namespace Opencart\Admin\Controller\Extension\Dashboard;
+class Order extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

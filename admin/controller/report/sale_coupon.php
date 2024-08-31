@@ -1,5 +1,6 @@
 <?php
-class ControllerReportSaleCoupon extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class SaleCoupon extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/sale_coupon');
 
@@ -104,7 +105,7 @@ class ControllerReportSaleCoupon extends Controller {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $coupon_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

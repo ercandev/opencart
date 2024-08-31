@@ -1,4 +1,5 @@
 <?php
+namespace Opencart\System\Library;
 class Image {
 	private $file;
 	private $image;
@@ -59,7 +60,7 @@ class Image {
 
 		$extension = strtolower($info['extension']);
 
-		if (is_resource($this->image)) {
+		if (is_object($this->image) || is_resource($this->image)) {
 			if ($extension == 'jpeg' || $extension == 'jpg') {
 				imagejpeg($this->image, $file, $quality);
 			} elseif ($extension == 'png') {

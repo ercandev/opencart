@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionTotalCoupon extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Total;
+class Coupon extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if ($this->config->get('coupon_status')) {
 			$this->load->language('extension/total/coupon');

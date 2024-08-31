@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionModuleBanner extends Controller {
+namespace Opencart\Admin\Controller\Extension\Module;
+class Banner extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

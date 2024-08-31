@@ -1,5 +1,6 @@
 <?php
-class ControllerLocalisationReturnReason extends Controller {
+namespace Opencart\Admin\Controller\Localisation;
+class ReturnReason extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -236,7 +237,7 @@ class ControllerLocalisationReturnReason extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $return_reason_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -350,10 +351,10 @@ class ControllerLocalisationReturnReason extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		$this->load->model('sale/return');
+		$this->load->model('sale/returns');
 
 		foreach ($this->request->post['selected'] as $return_reason_id) {
-			$return_total = $this->model_sale_return->getTotalReturnsByReturnReasonId($return_reason_id);
+			$return_total = $this->model_sale_returns->getTotalReturnsByReturnReasonId($return_reason_id);
 
 			if ($return_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_return'), $return_total);

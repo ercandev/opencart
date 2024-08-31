@@ -1,9 +1,10 @@
 <?php
+namespace Opencart\System\Library;
 class Cache {
 	private $adaptor;
 
 	public function __construct($adaptor, $expire = 3600) {
-		$class = 'Cache\\' . $adaptor;
+	  $class = 'Opencart\System\Library\Cache\\' . $adaptor;
 
 		if (class_exists($class)) {
 			$this->adaptor = new $class($expire);
@@ -16,8 +17,8 @@ class Cache {
 		return $this->adaptor->get($key);
 	}
 
-	public function set($key, $value) {
-		return $this->adaptor->set($key, $value);
+	public function set($key, $value, $expire = 0) {
+		return $this->adaptor->set($key, $value, $expire);
 	}
 
 	public function delete($key) {

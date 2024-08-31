@@ -1,5 +1,6 @@
 <?php
-class ModelCatalogDownload extends Model {
+namespace Opencart\Admin\Model\Catalog;
+class Download extends \Opencart\System\Engine\Model {
 	public function addDownload($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "download SET filename = '" . $this->db->escape($data['filename']) . "', mask = '" . $this->db->escape($data['mask']) . "', date_added = NOW()");
 

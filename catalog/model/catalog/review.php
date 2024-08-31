@@ -1,5 +1,6 @@
 <?php
-class ModelCatalogReview extends Model {
+namespace Opencart\Catalog\Model\Catalog;
+class Review extends \Opencart\System\Engine\Model {
 	public function addReview($product_id, $data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "review SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', product_id = '" . (int)$product_id . "', text = '" . $this->db->escape($data['text']) . "', rating = '" . (int)$data['rating'] . "', date_added = NOW()");
 
@@ -20,7 +21,7 @@ class ModelCatalogReview extends Model {
 			$message .= $this->language->get('text_review') . "\n";
 			$message .= html_entity_decode($data['text'], ENT_QUOTES, 'UTF-8') . "\n\n";
 
-			$mail = new Mail();
+			$mail = new \Opencart\System\Library\Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

@@ -1,5 +1,6 @@
 <?php
-class ControllerApiPayment extends Controller {
+namespace Opencart\Catalog\Controller\Api;
+class Payment extends \Opencart\System\Engine\Controller {
 	public function address() {
 		$this->load->language('api/payment');
 

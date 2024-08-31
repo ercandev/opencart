@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutFailure extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class Failure extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('checkout/failure');
 

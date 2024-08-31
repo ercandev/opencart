@@ -1,5 +1,6 @@
 <?php
-class ModelToolBackup extends Model {
+namespace Opencart\Admin\Model\Tool;
+class Backup extends \Opencart\System\Engine\Model {
 	public function restore($sql) {
 		foreach (explode(";\n", $sql) as $sql) {
 			$sql = trim($sql);

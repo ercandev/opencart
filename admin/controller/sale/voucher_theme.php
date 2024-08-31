@@ -1,5 +1,6 @@
 <?php
-class ControllerSaleVoucherTheme extends Controller {
+namespace Opencart\Admin\Controller\Sale;
+class VoucherTheme extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -236,7 +237,7 @@ class ControllerSaleVoucherTheme extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $voucher_theme_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

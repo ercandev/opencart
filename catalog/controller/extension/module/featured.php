@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionModuleFeatured extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Module;
+class Featured extends \Opencart\System\Engine\Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/featured');
 

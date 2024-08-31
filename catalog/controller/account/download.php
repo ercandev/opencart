@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountDownload extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Download extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/download', '', true);
@@ -87,7 +88,7 @@ class ControllerAccountDownload extends Controller {
 			}
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $download_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get($this->config->get('config_theme') . '_product_limit');

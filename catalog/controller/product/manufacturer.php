@@ -1,5 +1,6 @@
 <?php
-class ControllerProductManufacturer extends Controller {
+namespace Opencart\Catalog\Controller\Product;
+class Manufacturer extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('product/manufacturer');
 
@@ -323,7 +324,7 @@ class ControllerProductManufacturer extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$pagination = new Pagination();
+			$pagination = new \Opencart\System\Library\Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;

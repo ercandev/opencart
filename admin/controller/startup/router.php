@@ -1,5 +1,6 @@
 <?php
-class ControllerStartupRouter extends Controller {
+namespace Opencart\Admin\Controller\Startup;
+class Router extends \Opencart\System\Engine\Controller {
 	public function index() {
 		// Route
 		if (isset($this->request->get['route']) && $this->request->get['route'] != 'startup/router') {
@@ -20,7 +21,7 @@ class ControllerStartupRouter extends Controller {
 			return $result;
 		}
 		
-		$action = new Action($route);
+		$action = new \Opencart\System\Engine\Action($route);
 		
 		// Any output needs to be another Action object. 
 		$output = $action->execute($this->registry, $data);

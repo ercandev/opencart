@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonCurrency extends Controller {
+namespace Opencart\Catalog\Controller\Common;
+class Currency extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('common/currency');
 

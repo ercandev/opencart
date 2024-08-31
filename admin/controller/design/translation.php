@@ -1,5 +1,6 @@
 <?php
-class ControllerDesignTranslation extends Controller {
+namespace Opencart\Admin\Controller\Design;
+class Translation extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -71,7 +72,7 @@ class ControllerDesignTranslation extends Controller {
 			);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $translation_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -154,7 +155,7 @@ class ControllerDesignTranslation extends Controller {
 
 		if (!$json) {
 			// Unzip the files
-			$zip = new ZipArchive();
+			$zip = new \ZipArchive();
 
 			if ($zip->open($file)) {
 				$zip->extractTo(DIR_UPLOAD);

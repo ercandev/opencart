@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutSuccess extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class Success extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('checkout/success');
 

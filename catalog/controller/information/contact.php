@@ -1,5 +1,6 @@
 <?php
-class ControllerInformationContact extends Controller {
+namespace Opencart\Catalog\Controller\Information;
+class Contact extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -8,7 +9,7 @@ class ControllerInformationContact extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$mail = new Mail();
+			$mail = new \Opencart\System\Library\Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

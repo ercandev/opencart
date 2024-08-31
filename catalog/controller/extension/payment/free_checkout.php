@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionPaymentFreeCheckout extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Payment;
+class FreeCheckout extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$data['button_confirm'] = $this->language->get('button_confirm');
 

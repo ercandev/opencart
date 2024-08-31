@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountWishList extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class WishList extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/wishlist', '', true);

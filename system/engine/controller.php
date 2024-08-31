@@ -1,5 +1,6 @@
 <?php
-abstract class Controller {
+namespace Opencart\System\Engine;
+class Controller {
 	protected $registry;
 
 	public function __construct($registry) {

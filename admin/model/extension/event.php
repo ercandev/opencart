@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionEvent extends Model {
+namespace Opencart\Admin\Model\Extension;
+class Event extends \Opencart\System\Engine\Model {
 	public function addEvent($code, $trigger, $action, $status = 1) {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "event` SET `code` = '" . $this->db->escape($code) . "', `trigger` = '" . $this->db->escape($trigger) . "', `action` = '" . $this->db->escape($action) . "', `status` = '" . (int)$status . "', `date_added` = now()");
 	

@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionModule extends Model {
+namespace Opencart\Admin\Model\Extension;
+class Module extends \Opencart\System\Engine\Model {
 	public function addModule($code, $data) {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "module` SET `name` = '" . $this->db->escape($data['name']) . "', `code` = '" . $this->db->escape($code) . "', `setting` = '" . $this->db->escape(json_encode($data)) . "'");
 	}

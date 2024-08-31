@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountReward extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Reward extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/reward', '', true);
@@ -70,7 +71,7 @@ class ControllerAccountReward extends Controller {
 			);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $reward_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;

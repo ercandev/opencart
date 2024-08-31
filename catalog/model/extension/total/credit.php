@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionTotalCredit extends Model {
+namespace Opencart\Catalog\Model\Extension\Total;
+class Credit extends \Opencart\System\Engine\Model {
 	public function getTotal($total) {
 		$this->load->language('extension/total/credit');
 

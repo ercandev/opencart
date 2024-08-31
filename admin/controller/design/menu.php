@@ -1,5 +1,6 @@
 <?php
-class ControllerDesignMenu extends Controller {
+namespace Opencart\Admin\Controller\Design;
+class Menu extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -248,7 +249,7 @@ class ControllerDesignMenu extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $menu_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

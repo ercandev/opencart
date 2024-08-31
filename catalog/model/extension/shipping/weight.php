@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionShippingWeight extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class Weight extends \Opencart\System\Engine\Model {
 	public function getQuote($address) {
 		$this->load->language('extension/shipping/weight');
 

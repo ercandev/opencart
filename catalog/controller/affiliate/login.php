@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliateLogin extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Login extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

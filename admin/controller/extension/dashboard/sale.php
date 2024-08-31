@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionDashboardSale extends Controller {
+namespace Opencart\Admin\Controller\Extension\Dashboard;
+class Sale extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -130,7 +131,7 @@ class ControllerExtensionDashboardSale extends Controller {
 		} elseif ($sale_total > 1000) {
 			$data['total'] = round($sale_total / 1000, 1) . 'K';
 		} else {
-			$data['total'] = round($sale_total);
+		  $data['total'] = round(is_null($sale_total) ? 0 : $sale_total);
 		}
 
 		$data['sale'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], true);

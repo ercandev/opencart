@@ -1,5 +1,6 @@
 <?php
-class ControllerStartupCompatibility extends Controller {
+namespace Opencart\Admin\Controller\Startup;
+class Compatibility extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (isset($this->request->get['route'])) {
 			$extension = array(

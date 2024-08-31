@@ -1,9 +1,10 @@
 <?php
+namespace Opencart\System\Library;
 class Template {
 	private $adaptor;
 
   	public function __construct($adaptor) {
-	    $class = 'Template\\' . $adaptor;
+	    $class = 'Opencart\System\Library\Template\\' . $adaptor;
 
 		if (class_exists($class)) {
 			$this->adaptor = new $class();

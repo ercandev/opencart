@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountRecurring extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Recurring extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/recurring', '', true);
@@ -77,7 +78,7 @@ class ControllerAccountRecurring extends Controller {
 			);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $recurring_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;

@@ -1,5 +1,6 @@
 <?php
-class ModelLocalisationWeightClass extends Model {
+namespace Opencart\Admin\Model\Localisation;
+class WeightClass extends \Opencart\System\Engine\Model {
 	public function addWeightClass($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "weight_class SET value = '" . (float)$data['value'] . "'");
 

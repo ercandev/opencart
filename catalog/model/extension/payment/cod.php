@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionPaymentCOD extends Model {
+namespace Opencart\Catalog\Model\Extension\Payment;
+class COD extends \Opencart\System\Engine\Model {
 	public function getMethod($address, $total) {
 		$this->load->language('extension/payment/cod');
 

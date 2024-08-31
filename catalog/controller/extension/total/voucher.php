@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionTotalVoucher extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Total;
+class Voucher extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if ($this->config->get('voucher_status')) {
 			$this->load->language('extension/total/voucher');
@@ -64,7 +65,7 @@ class ControllerExtensionTotalVoucher extends Controller {
 
 			if ($voucher_query->num_rows) {
 				// Send out any gift voucher mails
-				$language = new Language($order_info['language_code']);
+				$language = new \Opencart\System\Library\Language($order_info['language_code']);
 				$language->load($order_info['language_code']);
 				$language->load('mail/voucher');
 
@@ -90,7 +91,7 @@ class ControllerExtensionTotalVoucher extends Controller {
 					$data['store_url'] = $order_info['store_url'];
 					$data['message'] = nl2br($voucher['message']);
 
-					$mail = new Mail();
+					$mail = new \Opencart\System\Library\Mail();
 					$mail->protocol = $this->config->get('config_mail_protocol');
 					$mail->parameter = $this->config->get('config_mail_parameter');
 					$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

@@ -1,5 +1,6 @@
 <?php
-class ControllerToolUpload extends Controller {
+namespace Opencart\Admin\Controller\Tool;
+class Upload extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -235,7 +236,7 @@ class ControllerToolUpload extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $upload_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

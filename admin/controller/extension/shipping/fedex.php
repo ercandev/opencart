@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionShippingFedex extends Controller {
+namespace Opencart\Admin\Controller\Extension\Shipping;
+class Fedex extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

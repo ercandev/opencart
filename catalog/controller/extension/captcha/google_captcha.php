@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionCaptchaGoogleCaptcha extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Captcha;
+class GoogleCaptcha extends \Opencart\System\Engine\Controller {
     public function index($error = array()) {
         $this->load->language('extension/captcha/google_captcha');
 

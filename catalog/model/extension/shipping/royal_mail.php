@@ -240,7 +240,8 @@ Yemen, Republic of = YE
 Zambia = ZM
 Zimbabwe = ZW
 */
-class ModelExtensionShippingRoyalMail extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class RoyalMail extends \Opencart\System\Engine\Model {
 	function getQuote($address) {
 		$this->load->language('extension/shipping/royal_mail');
 

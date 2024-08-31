@@ -20,7 +20,6 @@ $_['session_autostart'] = false;
 
 // Autoload Libraries
 $_['library_autoload'] = array(
-	'openbay'
 );
 
 // Actions

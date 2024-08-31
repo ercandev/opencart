@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionPaymentCheque extends Controller {
+namespace Opencart\Admin\Controller\Extension\Payment;
+class Cheque extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

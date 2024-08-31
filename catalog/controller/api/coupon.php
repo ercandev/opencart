@@ -1,5 +1,6 @@
 <?php
-class ControllerApiCoupon extends Controller {
+namespace Opencart\Catalog\Controller\Api;
+class Coupon extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('api/coupon');
 

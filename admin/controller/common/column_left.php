@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonColumnLeft extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class ColumnLeft extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (isset($this->request->get['token']) && isset($this->session->data['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
 			$this->load->language('common/column_left');
@@ -179,14 +180,6 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()
 				);
 			}
-					
-			if ($this->user->hasPermission('access', 'extension/modification')) {
-				$extension[] = array(
-					'name'	   => $this->language->get('text_modification'),
-					'href'     => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);
-			}
 			
 			if ($this->user->hasPermission('access', 'extension/event')) {
 				$extension[] = array(
@@ -279,10 +272,10 @@ class ControllerCommonColumnLeft extends Controller {
 				);	
 			}
 			
-			if ($this->user->hasPermission('access', 'sale/return')) {
+			if ($this->user->hasPermission('access', 'sale/returns')) {
 				$sale[] = array(
 					'name'	   => $this->language->get('text_return'),
-					'href'     => $this->url->link('sale/return', 'token=' . $this->session->data['token'], true),
+					'href'     => $this->url->link('sale/returns', 'token=' . $this->session->data['token'], true),
 					'children' => array()		
 				);	
 			}

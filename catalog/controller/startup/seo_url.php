@@ -1,5 +1,6 @@
 <?php
-class ControllerStartupSeoUrl extends Controller {
+namespace Opencart\Catalog\Controller\Startup;
+class SeoUrl extends \Opencart\System\Engine\Controller {
 	public function index() {
 		// Add rewrite to url class
 		if ($this->config->get('config_seo_url')) {

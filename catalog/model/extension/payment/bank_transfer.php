@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionPaymentBankTransfer extends Model {
+namespace Opencart\Catalog\Model\Extension\Payment;
+class BankTransfer extends \Opencart\System\Engine\Model {
 	public function getMethod($address, $total) {
 		$this->load->language('extension/payment/bank_transfer');
 

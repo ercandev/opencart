@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionFeedGoogleBase extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Feed;
+class GoogleBase extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if ($this->config->get('google_base_status')) {
 			$output  = '<?xml version="1.0" encoding="UTF-8" ?>';

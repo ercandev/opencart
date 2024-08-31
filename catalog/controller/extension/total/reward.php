@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionTotalReward extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Total;
+class Reward extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$points = $this->customer->getRewardPoints();
 

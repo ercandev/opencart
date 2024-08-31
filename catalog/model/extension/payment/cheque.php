@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionPaymentCheque extends Model {
+namespace Opencart\Catalog\Model\Extension\Payment;
+class Cheque extends \Opencart\System\Engine\Model {
 	public function getMethod($address, $total) {
 		$this->load->language('extension/payment/cheque');
 

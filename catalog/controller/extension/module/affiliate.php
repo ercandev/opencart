@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionModuleAffiliate extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Module;
+class Affiliate extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('extension/module/affiliate');
 

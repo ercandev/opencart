@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionExtensionFeed extends Controller {
+namespace Opencart\Admin\Controller\Extension\Extension;
+class Feed extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionShippingParcelforce48 extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class Parcelforce48 extends \Opencart\System\Engine\Model {
 	function getQuote($address) {
 		$this->load->language('extension/shipping/parcelforce_48');
 

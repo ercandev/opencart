@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionTotalCoupon extends Controller {
+namespace Opencart\Admin\Controller\Extension\Total;
+class Coupon extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

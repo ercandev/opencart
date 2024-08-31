@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionDashboardActivity extends Controller {
+namespace Opencart\Admin\Controller\Extension\Dashboard;
+class Activity extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -125,7 +126,7 @@ class ControllerExtensionDashboardActivity extends Controller {
 				$this->url->link('customer/customer/edit', 'token=' . $this->session->data['token'] . '&customer_id=', true),
 				$this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=', true),
 				$this->url->link('marketing/affiliate/edit', 'token=' . $this->session->data['token'] . '&affiliate_id=', true),
-				$this->url->link('sale/return/edit', 'token=' . $this->session->data['token'] . '&return_id=', true)
+				$this->url->link('sale/returns/edit', 'token=' . $this->session->data['token'] . '&return_id=', true)
 			);
 
 			$data['activities'][] = array(

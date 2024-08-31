@@ -1,5 +1,6 @@
 <?php
-class ControllerEventTheme extends Controller {
+namespace Opencart\Catalog\Controller\Event;
+class Theme extends \Opencart\System\Engine\Controller {
 	public function index(&$view, &$data, &$output) {
 		if (!$this->config->get($this->config->get('config_theme') . '_status')) {
 			exit('Error: A theme has not been assigned to this store!');

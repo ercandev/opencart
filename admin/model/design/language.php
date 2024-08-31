@@ -1,5 +1,6 @@
 <?php
-class ModelDesignLanguage extends Model {
+namespace Opencart\Admin\Model\Design;
+class Language extends \Opencart\System\Engine\Model {
 	public function editTranslation($store_id, $language_id, $route, $data) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "translation  WHERE route = '" . $this->db->escape($route) . "'");
 

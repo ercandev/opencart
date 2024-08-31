@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionTotalShipping extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Total;
+class Shipping extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if ($this->config->get('shipping_status') && $this->config->get('shipping_estimator') && $this->cart->hasShipping()) {
 			$this->load->language('extension/total/shipping');

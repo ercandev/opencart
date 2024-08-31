@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutShippingMethod extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class ShippingMethod extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
 

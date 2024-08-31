@@ -1,5 +1,6 @@
 <?php
-class ControllerSaleVoucher extends Controller {
+namespace Opencart\Admin\Controller\Sale;
+class Voucher extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -265,7 +266,7 @@ class ControllerSaleVoucher extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $voucher_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -577,7 +578,7 @@ class ControllerSaleVoucher extends Controller {
 
 		$history_total = $this->model_sale_voucher->getTotalVoucherHistories($this->request->get['voucher_id']);
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $history_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;

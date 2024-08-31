@@ -1,5 +1,6 @@
 <?php
-class ModelAccountApi extends Model {
+namespace Opencart\Catalog\Model\Account;
+class Api extends \Opencart\System\Engine\Model {
 	public function getApiByKey($key) {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api` WHERE `key` = '" . $this->db->escape($key) . "' AND status = '1'");
 

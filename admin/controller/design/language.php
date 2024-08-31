@@ -1,5 +1,6 @@
 <?php
-class ControllerDesignLanguage extends Controller {
+namespace Opencart\Admin\Controller\Design;
+class Language extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

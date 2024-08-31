@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionDashboardMap extends Controller {
+namespace Opencart\Admin\Controller\Extension\Dashboard;
+class Map extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutConfirm extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class Confirm extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$redirect = '';
 

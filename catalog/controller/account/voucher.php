@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountVoucher extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Voucher extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

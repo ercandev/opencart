@@ -1,5 +1,6 @@
 <?php
-class ModelAffiliateTransaction extends Model {
+namespace Opencart\Catalog\Model\Affiliate;
+class Transaction extends \Opencart\System\Engine\Model {
 	public function getTransactions($data = array()) {
 		$sql = "SELECT * FROM `" . DB_PREFIX . "affiliate_transaction` WHERE affiliate_id = '" . (int)$this->affiliate->getId() . "'";
 

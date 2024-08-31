@@ -1,5 +1,6 @@
 <?php
-class ControllerCustomerCustomField extends Controller {
+namespace Opencart\Admin\Controller\Customer;
+class CustomField extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -283,7 +284,7 @@ class ControllerCustomerCustomField extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $custom_field_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

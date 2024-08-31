@@ -1,5 +1,6 @@
 <?php
-class ModelLocalisationStockStatus extends Model {
+namespace Opencart\Admin\Model\Localisation;
+class StockStatus extends \Opencart\System\Engine\Model {
 	public function addStockStatus($data) {
 		foreach ($data['stock_status'] as $language_id => $value) {
 			if (isset($stock_status_id)) {

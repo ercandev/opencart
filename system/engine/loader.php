@@ -1,5 +1,6 @@
 <?php
-final class Loader {
+namespace Opencart\System\Engine;
+class Loader {
 	protected $registry;
 
 	public function __construct($registry) {
@@ -20,14 +21,14 @@ final class Loader {
 		}
 		
 		if (!$output) {
-			$action = new Action($route);
+			$action = new \Opencart\System\Engine\Action($route);
 			$output = $action->execute($this->registry, array(&$data));
 		}
 			
 		// Trigger the post events
 		$result = $this->registry->get('event')->trigger('controller/' . $route . '/after', array(&$route, &$data, &$output));
 		
-		if ($output instanceof Exception) {
+		if ($output instanceof \Exception) {
 			return false;
 		}
 
@@ -35,33 +36,67 @@ final class Loader {
 	}
 	
 	public function model($route) {
-		// Sanitize the call
-		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
-		
-		// Trigger the pre events
-		$this->registry->get('event')->trigger('model/' . $route . '/before', array(&$route));
-		
-		if (!$this->registry->has('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), $route))) {
-			$file  = DIR_APPLICATION . 'model/' . $route . '.php';
-			$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $route);
-			
-			if (is_file($file)) {
-				include_once($file);
-	
-				$proxy = new Proxy();
-				
-				foreach (get_class_methods($class) as $method) {
-					$proxy->{$method} = $this->callback($this->registry, $route . '/' . $method);
-				}
-				
-				$this->registry->set('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), (string)$route), $proxy);
-			} else {
-				throw new \Exception('Error: Could not load model ' . $route . '!');
-			}
-		}
-		
-		// Trigger the post events
-		$this->registry->get('event')->trigger('model/' . $route . '/after', array(&$route));
+	  // Sanitize the call
+	  $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', $route);
+	  
+	  // Converting a route path to a class name
+	  $class = 'Opencart\\' . $this->registry->get('config')->get('application') . '\Model\\' . str_replace(['_', '/'], ['', '\\'], ucwords($route, '_/'));
+	  
+	  // Create a key to store the model object
+	  $key = 'model_' . str_replace('/', '_', $route);
+	  
+	  // Check if the requested model is already stored in the registry.
+	  if (!$this->registry->has($key)) {
+	    if (class_exists($class)) {
+	      $model = new $class($this->registry);
+	      
+	      $proxy = new \Opencart\System\Engine\Proxy();
+	      
+	      foreach (get_class_methods($model) as $method) {
+	        if ((substr($method, 0, 2) != '__') && is_callable($class, $method)) {
+	          // Grab args using function because we don't know the number of args being passed.
+	          // https://www.php.net/manual/en/functions.arguments.php#functions.variable-arg-list
+	          // https://wiki.php.net/rfc/variadics
+	          $proxy->{$method} = function (mixed &...$args) use ($route, $model, $method): mixed {
+	            $route = $route . '/' . $method;
+	            
+	            $output = '';
+	            
+	            // Trigger the pre events
+	            $result = $this->registry->get('event')->trigger('model/' . $route . '/before', [&$route, &$args]);
+	            
+	            if ($result) {
+	              $output = $result;
+	            }
+	            
+	            if (!$output) {
+	              // Get the method to be used
+	              $callable = [$model, $method];
+	              
+	              if (is_callable($callable)) {
+	                $output = call_user_func_array($callable, $args);
+	              } else {
+	                throw new \Exception('Error: Could not call model/' . $route . '!');
+	              }
+	            }
+	            
+	            // Trigger the post events
+	            $result = $this->registry->get('event')->trigger('model/' . $route . '/after', [&$route, &$args, &$output]);
+	            
+	            if ($result) {
+	              $output = $result;
+	            }
+	            
+	            return $output;
+	          };
+	        }
+	      }
+	      
+	      $this->registry->set($key, $proxy);
+	    } else {
+	      throw new \Exception('Error: Could not load model ' . $class . '!');
+	    }
+	  }
 	}
 
 	public function view($route, $data = array()) {
@@ -78,7 +113,7 @@ final class Loader {
 		}
 		
 		if (!$output) {
-			$template = new Template($this->registry->get('config')->get('template_type'));
+		  $template = new \Opencart\System\Library\Template($this->registry->get('config')->get('template_type'));
 			
 			foreach ($data as $key => $value) {
 				$template->set($key, $value);

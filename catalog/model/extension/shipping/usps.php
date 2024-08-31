@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionShippingUsps extends Model {
+namespace Opencart\Catalog\Model\Extension\Shipping;
+class Usps extends \Opencart\System\Engine\Model {
 	public function getQuote($address) {
 		$this->load->language('extension/shipping/usps');
 
@@ -347,7 +348,7 @@ class ModelExtensionShippingUsps extends Model {
 						$this->log->write("USPS DATA RECV: " . $result);
 					}
 
-					$dom = new DOMDocument('1.0', 'UTF-8');
+					$dom = new \DOMDocument('1.0', 'UTF-8');
 					$dom->loadXml($result);
 
 					$rate_response = $dom->getElementsByTagName('RateV4Response')->item(0);

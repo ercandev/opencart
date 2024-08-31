@@ -1,5 +1,6 @@
 <?php
-final class Registry {
+namespace Opencart\System\Engine;
+class Registry {
 	private $data = array();
 
 	public function get($key) {

@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionFraudMaxMind extends Controller {
+namespace Opencart\Admin\Controller\Extension\Fraud;
+class MaxMind extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

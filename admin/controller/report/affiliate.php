@@ -1,5 +1,6 @@
 <?php
-class ControllerReportAffiliate extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class Affiliate extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/affiliate');
 
@@ -108,7 +109,7 @@ class ControllerReportAffiliate extends Controller {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $affiliate_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

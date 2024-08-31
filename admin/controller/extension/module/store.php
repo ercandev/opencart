@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionModuleStore extends Controller {
+namespace Opencart\Admin\Controller\Extension\Module;
+class Store extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

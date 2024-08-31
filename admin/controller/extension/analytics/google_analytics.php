@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionAnalyticsGoogleAnalytics extends Controller {
+namespace Opencart\Admin\Controller\Extension\Analytics;
+class GoogleAnalytics extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

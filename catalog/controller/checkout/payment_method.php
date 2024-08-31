@@ -1,5 +1,6 @@
 <?php
-class ControllerCheckoutPaymentMethod extends Controller {
+namespace Opencart\Catalog\Controller\Checkout;
+class PaymentMethod extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
 

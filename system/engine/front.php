@@ -1,5 +1,6 @@
 <?php
-final class Front {
+namespace Opencart\System\Engine;
+class Front {
 	private $registry;
 	private $pre_action = array();
 	private $error;
@@ -37,7 +38,7 @@ final class Front {
 			return $result;
 		} 
 		
-		if ($result instanceof Exception) {
+		if ($result instanceof \Exception) {
 			$action = $this->error;
 			
 			$this->error = null;

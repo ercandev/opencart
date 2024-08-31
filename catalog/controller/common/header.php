@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonHeader extends Controller {
+namespace Opencart\Catalog\Controller\Common;
+class Header extends \Opencart\System\Engine\Controller {
 	public function index() {
 		// Analytics
 		$this->load->model('extension/extension');

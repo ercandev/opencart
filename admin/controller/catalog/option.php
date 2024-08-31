@@ -1,5 +1,6 @@
 <?php
-class ControllerCatalogOption extends Controller {
+namespace Opencart\Admin\Controller\Catalog;
+class Option extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -239,7 +240,7 @@ class ControllerCatalogOption extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $option_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

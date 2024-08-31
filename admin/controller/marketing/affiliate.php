@@ -1,5 +1,6 @@
 <?php
-class ControllerMarketingAffiliate extends Controller {
+namespace Opencart\Admin\Controller\Marketing;
+class Affiliate extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -539,7 +540,7 @@ class ControllerMarketingAffiliate extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $affiliate_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -1179,7 +1180,7 @@ class ControllerMarketingAffiliate extends Controller {
 
 		$transaction_total = $this->model_marketing_affiliate->getTotalTransactions($this->request->get['affiliate_id']);
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

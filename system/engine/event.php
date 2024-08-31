@@ -1,9 +1,5 @@
 <?php
-/*
-* Event System Userguide
-* 
-* https://github.com/opencart/opencart/wiki/Events-(script-notifications)-2.2.x.x
-*/
+namespace Opencart\System\Engine;
 class Event {
 	protected $registry;
 	protected $data = array();
@@ -22,7 +18,7 @@ class Event {
 				foreach ($actions as $action) {
 					$result = $action->execute($this->registry, $args);
 
-					if (!is_null($result) && !($result instanceof Exception)) {
+					if (!is_null($result) && !($result instanceof \Exception)) {
 						return $result;
 					}
 				}

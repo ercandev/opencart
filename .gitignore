@@ -38,9 +38,12 @@
 /system/storage/logs/*
 !/system/storage/logs/index.html
 
-# If you want to ignore install file use following lines [on development mode]
-# /backup.install/*
-# /install/*
+# Session Files
+/system/storage/session/*
+!/system/storage/session/index.html
 
 # IDE Project files
 /.idea
+/.buildpath
+/.project
+/.settings/*

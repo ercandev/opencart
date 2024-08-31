@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountNewsletter extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Newsletter extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/newsletter', '', true);

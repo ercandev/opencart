@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountForgotten extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Forgotten extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -27,7 +28,7 @@ class ControllerAccountForgotten extends Controller {
 			$message .= $this->url->link('account/reset', 'code=' . $code, true) . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
 
-			$mail = new Mail();
+			$mail = new \Opencart\System\Library\Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

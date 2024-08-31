@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliatePayment extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Payment extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

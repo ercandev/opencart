@@ -1,5 +1,6 @@
 <?php
-class ControllerEventDebug extends Controller {
+namespace Opencart\Catalog\Controller\Event;
+class Debug extends \Opencart\System\Engine\Controller {
 	public function before(&$route, &$data) {
 		if ($route == '') { // add the route you want to test
 			$this->session->data['debug'][$route] = microtime();

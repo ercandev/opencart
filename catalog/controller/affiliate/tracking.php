@@ -1,5 +1,6 @@
 <?php
-class ControllerAffiliateTracking extends Controller {
+namespace Opencart\Catalog\Controller\Affiliate;
+class Tracking extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->affiliate->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('affiliate/tracking', '', true);

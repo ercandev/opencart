@@ -1,5 +1,6 @@
 <?php
-class ControllerMarketingMarketing extends Controller {
+namespace Opencart\Admin\Controller\Marketing;
+class Marketing extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -350,7 +351,7 @@ class ControllerMarketingMarketing extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $marketing_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

@@ -1,17 +1,22 @@
 <?php
-namespace DB;
-final class MySQLi {
+namespace Opencart\System\Library\DB;
+class MySQLi {
 	private $connection;
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
-		$this->connection = new \mysqli($hostname, $username, $password, $database, $port);
+	  $this->connection = @new \MySQLi($hostname, $username, $password, $database, $port);
 
 		if ($this->connection->connect_error) {
 			throw new \Exception('Error: ' . $this->connection->error . '<br />Error No: ' . $this->connection->errno);
 		}
 
-		$this->connection->set_charset("utf8");
-		$this->connection->query("SET SQL_MODE = ''");
+		$this->connection->set_charset('utf8mb4');
+		
+		$this->query("SET SESSION sql_mode = 'NO_ZERO_IN_DATE,NO_ENGINE_SUBSTITUTION'");
+		$this->query("SET FOREIGN_KEY_CHECKS = 0");
+		
+		// Sync PHP and DB time zones
+		$this->query("SET `time_zone` = '" . $this->escape(date('P')) . "'");
 	}
 
 	public function query($sql) {

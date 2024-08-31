@@ -1,5 +1,6 @@
 <?php
-class ControllerCatalogProduct extends Controller {
+namespace Opencart\Admin\Controller\Catalog;
+class Product extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -514,7 +515,7 @@ class ControllerCatalogProduct extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $product_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -653,7 +654,6 @@ class ControllerCatalogProduct extends Controller {
 		$data['tab_links'] = $this->language->get('tab_links');
 		$data['tab_reward'] = $this->language->get('tab_reward');
 		$data['tab_design'] = $this->language->get('tab_design');
-		$data['tab_openbay'] = $this->language->get('tab_openbay');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

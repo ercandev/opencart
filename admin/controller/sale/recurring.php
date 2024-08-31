@@ -1,5 +1,6 @@
 <?php
-class ControllerSaleRecurring extends Controller {
+namespace Opencart\Admin\Controller\Sale;
+class Recurring extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -274,7 +275,7 @@ class ControllerSaleRecurring extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $recurrings_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -479,7 +480,7 @@ class ControllerSaleRecurring extends Controller {
 
 			$this->response->setOutput($this->load->view('sale/recurring_info', $data));
 		} else {
-			return new Action('error/not_found');
+			return new \Opencart\System\Engine\Action('error/not_found');
 		}
 	}
 }

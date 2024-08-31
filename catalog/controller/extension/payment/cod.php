@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionPaymentCod extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Payment;
+class Cod extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$data['button_confirm'] = $this->language->get('button_confirm');
 

@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionTotalShipping extends Model {
+namespace Opencart\Catalog\Model\Extension\Total;
+class Shipping extends \Opencart\System\Engine\Model {
 	public function getTotal($total) {
 		if ($this->cart->hasShipping() && isset($this->session->data['shipping_method'])) {
 			$total['totals'][] = array(

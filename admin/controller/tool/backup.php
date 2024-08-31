@@ -1,5 +1,6 @@
 <?php
-class ControllerToolBackup extends Controller {
+namespace Opencart\Admin\Controller\Tool;
+class Backup extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

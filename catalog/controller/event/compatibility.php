@@ -1,5 +1,6 @@
 <?php
-class ControllerEventCompatibility extends Controller {
+namespace Opencart\Catalog\Controller\Event;
+class Compatibility extends \Opencart\System\Engine\Controller {
 	// 
 	/*
 	The below code will old extensions compatible with the extension page move 

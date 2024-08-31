@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonForgotten extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class Forgotten extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -31,7 +32,7 @@ class ControllerCommonForgotten extends Controller {
 			$message .= $this->url->link('common/reset', 'code=' . $code, true) . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
 
-			$mail = new Mail();
+			$mail = new \Opencart\System\Library\Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

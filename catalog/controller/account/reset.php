@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountReset extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Reset extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -109,7 +110,7 @@ class ControllerAccountReset extends Controller {
 
 			$this->session->data['error'] = $this->language->get('error_code');
 
-			return new Action('account/login');
+			return new \Opencart\System\Engine\Action('account/login');
 		}
 	}
 

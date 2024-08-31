@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionModuleGoogleHangouts extends Controller {
+namespace Opencart\Catalog\Controller\Extension\Module;
+class GoogleHangouts extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('extension/module/google_hangouts');
 

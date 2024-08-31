@@ -1,5 +1,6 @@
 <?php
-class ControllerMarketingContact extends Controller {
+namespace Opencart\Admin\Controller\Marketing;
+class Contact extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -237,7 +238,7 @@ class ControllerMarketingContact extends Controller {
 
 					foreach ($emails as $email) {
 						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-							$mail = new Mail();
+							$mail = new \Opencart\System\Library\Mail();
 							$mail->protocol = $this->config->get('config_mail_protocol');
 							$mail->parameter = $this->config->get('config_mail_parameter');
 							$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');

@@ -1,4 +1,5 @@
 <?php
+namespace Opencart\System\Library;
 class Mail {
 	protected $to;
 	protected $from;

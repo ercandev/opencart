@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionExtensionCaptcha extends Controller {
+namespace Opencart\Admin\Controller\Extension\Extension;
+class Captcha extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

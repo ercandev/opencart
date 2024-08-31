@@ -1,4 +1,5 @@
 <?php
+namespace Opencart\System\Library;
 class Response {
 	private $headers = array();
 	private $level = 0;

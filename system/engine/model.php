@@ -1,5 +1,6 @@
 <?php
-abstract class Model {
+namespace Opencart\System\Engine;
+class Model {
 	protected $registry;
 
 	public function __construct($registry) {

@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountRegister extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Register extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

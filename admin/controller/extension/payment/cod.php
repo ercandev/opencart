@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionPaymentCod extends Controller {
+namespace Opencart\Admin\Controller\Extension\Payment;
+class Cod extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

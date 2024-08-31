@@ -1,4 +1,5 @@
 <?php
+namespace Opencart\System\Library;
 class Language {
 	private $default = 'en-gb';
 	private $directory;

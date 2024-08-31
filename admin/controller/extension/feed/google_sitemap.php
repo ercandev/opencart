@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionFeedGoogleSitemap extends Controller {
+namespace Opencart\Admin\Controller\Extension\Feed;
+class GoogleSitemap extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

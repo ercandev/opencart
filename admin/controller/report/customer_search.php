@@ -1,5 +1,6 @@
 <?php
-class ControllerReportCustomerSearch extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class CustomerSearch extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/customer_search');
 
@@ -172,7 +173,7 @@ class ControllerReportCustomerSearch extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $search_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

@@ -1,5 +1,6 @@
 <?php
-class ControllerApiOrder extends Controller {
+namespace Opencart\Catalog\Controller\Api;
+class Order extends \Opencart\System\Engine\Controller {
 	public function add() {
 		$this->load->language('api/order');
 

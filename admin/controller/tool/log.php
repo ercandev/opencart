@@ -1,5 +1,6 @@
 <?php
-class ControllerToolLog extends Controller {
+namespace Opencart\Admin\Controller\Tool;
+class Log extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {		

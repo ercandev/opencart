@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionShippingAusPost extends Controller {
+namespace Opencart\Admin\Controller\Extension\Shipping;
+class AusPost extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {

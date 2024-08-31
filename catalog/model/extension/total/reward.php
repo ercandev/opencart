@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionTotalReward extends Model {
+namespace Opencart\Catalog\Model\Extension\Total;
+class Reward extends \Opencart\System\Engine\Model {
 	public function getTotal($total) {
 		if (isset($this->session->data['reward'])) {
 			$this->load->language('extension/total/reward');

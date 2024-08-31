@@ -1,5 +1,6 @@
 <?php
-class ModelExtensionFeedGoogleBase extends Model {
+namespace Opencart\Admin\Model\Extension\Feed;
+class GoogleBase extends \Opencart\System\Engine\Model {
 	public function install() {
 		$this->db->query("
 			CREATE TABLE `" . DB_PREFIX . "google_base_category` (

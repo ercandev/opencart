@@ -1,5 +1,6 @@
 <?php
-class ControllerLocalisationStockStatus extends Controller {
+namespace Opencart\Admin\Controller\Localisation;
+class StockStatus extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -236,7 +237,7 @@ class ControllerLocalisationStockStatus extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $stock_status_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

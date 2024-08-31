@@ -1,5 +1,6 @@
 <?php
-class ControllerAccountAccount extends Controller {
+namespace Opencart\Catalog\Controller\Account;
+class Account extends \Opencart\System\Engine\Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/account', '', true);
@@ -80,7 +81,7 @@ class ControllerAccountAccount extends Controller {
 			$data['reward'] = '';
 		}		
 		
-		$data['return'] = $this->url->link('account/return', '', true);
+		$data['return'] = $this->url->link('account/returns', '', true);
 		$data['transaction'] = $this->url->link('account/transaction', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 		$data['recurring'] = $this->url->link('account/recurring', '', true);

@@ -1,5 +1,6 @@
 <?php
-class ModelLocalisationReturnStatus extends Model {
+namespace Opencart\Admin\Model\Localisation;
+class ReturnStatus extends \Opencart\System\Engine\Model {
 	public function addReturnStatus($data) {
 		foreach ($data['return_status'] as $language_id => $value) {
 			if (isset($return_status_id)) {

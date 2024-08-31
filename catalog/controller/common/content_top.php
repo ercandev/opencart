@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonContentTop extends Controller {
+namespace Opencart\Catalog\Controller\Common;
+class ContentTop extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->model('design/layout');
 

@@ -1,5 +1,6 @@
 <?php
-class ModelSettingSetting extends Model {
+namespace Opencart\Catalog\Model\Setting;
+class Setting extends \Opencart\System\Engine\Model {
 	public function getSetting($code, $store_id = 0) {
 		$data = array();
 

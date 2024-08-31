@@ -1,5 +1,6 @@
 <?php
-class ControllerExtensionInstaller extends Controller {
+namespace Opencart\Admin\Controller\Extension;
+class Installer extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('extension/installer');
 
@@ -232,7 +233,7 @@ class ControllerExtensionInstaller extends Controller {
 
 		if (!$json) {
 			// Unzip the files
-			$zip = new ZipArchive();
+			$zip = new \ZipArchive();
 
 			if ($zip->open($file)) {
 				$zip->extractTo(DIR_UPLOAD . $this->request->post['path']);
@@ -398,7 +399,7 @@ class ControllerExtensionInstaller extends Controller {
 							}
 						}
 					}
-				} catch(Exception $exception) {
+				} catch(\Exception $exception) {
 					$json['error'] = sprintf($this->language->get('error_exception'), $exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine());
 				}
 			}
@@ -431,7 +432,7 @@ class ControllerExtensionInstaller extends Controller {
 
 			if ($xml) {
 				try {
-					$dom = new DOMDocument('1.0', 'UTF-8');
+					$dom = new \DOMDocument('1.0', 'UTF-8');
 					$dom->loadXml($xml);
 
 					$name = $dom->getElementsByTagName('name')->item(0);
@@ -494,7 +495,7 @@ class ControllerExtensionInstaller extends Controller {
 					if (!$json) {
 						$this->model_extension_modification->addModification($modification_data);
 					}
-				} catch(Exception $exception) {
+				} catch(\Exception $exception) {
 					$json['error'] = sprintf($this->language->get('error_exception'), $exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine());
 				}
 			}
@@ -522,7 +523,7 @@ class ControllerExtensionInstaller extends Controller {
 		if (!$json) {
 			try {
 				include($file);
-			} catch(Exception $exception) {
+			} catch(\Exception $exception) {
 				$json['error'] = sprintf($this->language->get('error_exception'), $exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine());
 			}
 		}

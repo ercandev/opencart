@@ -1,5 +1,6 @@
 <?php
-class ModelDesignMenu extends Model {
+namespace Opencart\Admin\Model\Design;
+class Menu extends \Opencart\System\Engine\Model {
 	public function addMenu($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "menu SET store_id = '" . (int)$data['store_id'] . "', type = '" .  $this->db->escape($data['type']) . "', link = '" .  $this->db->escape($data['link']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "'");
 	

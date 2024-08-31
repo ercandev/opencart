@@ -1,5 +1,6 @@
 <?php
-class ControllerReportCustomerCredit extends Controller {
+namespace Opencart\Admin\Controller\Report;
+class CustomerCredit extends \Opencart\System\Engine\Controller {
 	public function index() {
 		$this->load->language('report/customer_credit');
 
@@ -122,7 +123,7 @@ class ControllerReportCustomerCredit extends Controller {
 			$url .= '&filter_customer=' . urlencode($this->request->get['filter_customer']);
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $customer_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');

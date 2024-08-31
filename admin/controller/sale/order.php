@@ -1,5 +1,6 @@
 <?php
-class ControllerSaleOrder extends Controller {
+namespace Opencart\Admin\Controller\Sale;
+class Order extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -352,7 +353,7 @@ class ControllerSaleOrder extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $order_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -1347,7 +1348,7 @@ class ControllerSaleOrder extends Controller {
 
 			$this->response->setOutput($this->load->view('sale/order_info', $data));
 		} else {
-			return new Action('error/not_found');
+			return new \Opencart\System\Engine\Action('error/not_found');
 		}
 	}
 	
@@ -1553,7 +1554,7 @@ class ControllerSaleOrder extends Controller {
 
 		$history_total = $this->model_sale_order->getTotalOrderHistories($this->request->get['order_id']);
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $history_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;

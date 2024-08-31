@@ -1,5 +1,6 @@
 <?php
-class ControllerCommonReset extends Controller {
+namespace Opencart\Admin\Controller\Common;
+class Reset extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -93,7 +94,7 @@ class ControllerCommonReset extends Controller {
 
 			$this->model_setting_setting->editSettingValue('config', 'config_password', '0');
 
-			return new Action('common/login');
+			return new \Opencart\System\Engine\Action('common/login');
 		}
 	}
 

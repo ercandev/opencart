@@ -1,5 +1,6 @@
 <?php
-class ControllerLocalisationReturnStatus extends Controller {
+namespace Opencart\Admin\Controller\Localisation;
+class ReturnStatus extends \Opencart\System\Engine\Controller {
 	private $error = array();
 
 	public function index() {
@@ -236,7 +237,7 @@ class ControllerLocalisationReturnStatus extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		$pagination = new Pagination();
+		$pagination = new \Opencart\System\Library\Pagination();
 		$pagination->total = $return_status_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
@@ -350,20 +351,20 @@ class ControllerLocalisationReturnStatus extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		$this->load->model('sale/return');
+		$this->load->model('sale/returns');
 
 		foreach ($this->request->post['selected'] as $return_status_id) {
 			if ($this->config->get('config_return_status_id') == $return_status_id) {
 				$this->error['warning'] = $this->language->get('error_default');
 			}
 
-			$return_total = $this->model_sale_return->getTotalReturnsByReturnStatusId($return_status_id);
+			$return_total = $this->model_sale_returns->getTotalReturnsByReturnStatusId($return_status_id);
 
 			if ($return_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_return'), $return_total);
 			}
 
-			$return_total = $this->model_sale_return->getTotalReturnHistoriesByReturnStatusId($return_status_id);
+			$return_total = $this->model_sale_returns->getTotalReturnHistoriesByReturnStatusId($return_status_id);
 
 			if ($return_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_return'), $return_total);
