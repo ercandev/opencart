@@ -46,7 +46,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			}
 
 			// Get files
-			$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+			$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,webp,JPG,JPEG,PNG,GIF,WEBP}', GLOB_BRACE);
 
 			if (!$files) {
 				$files = array();
@@ -257,7 +257,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 						'jpg',
 						'jpeg',
 						'gif',
-						'png'
+						'png',
+					  'webp'
 					);
 	
 					if (!in_array(utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
@@ -270,7 +271,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 						'image/pjpeg',
 						'image/png',
 						'image/x-png',
-						'image/gif'
+						'image/gif',
+				    'image/webp'
 					);
 	
 					if (!in_array($file['type'], $allowed)) {
