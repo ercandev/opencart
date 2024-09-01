@@ -17,6 +17,8 @@ $_['db_port']          = DB_PORT;
 
 // Session
 $_['session_autostart'] = false;
+$_['session_name']      = 'CUSTSESSID';
+
 
 // Autoload Libraries
 $_['library_autoload'] = array(

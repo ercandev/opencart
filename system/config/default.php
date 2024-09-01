@@ -39,7 +39,7 @@ $_['cache_expire']         = 3600;
 // Session
 $_['session_autostart']    = true;
 $_['session_engine']       = 'file'; // db or file
-$_['session_name']         = 'OCSESSID';
+$_['session_name']         = 'PHPSESSID';
 $_['session_domain']       = '';
 $_['session_path']         = !empty($_SERVER['PHP_SELF']) ? rtrim(dirname($_SERVER['PHP_SELF']), '/') . '/' : '/';
 $_['session_expire']       = 86400;

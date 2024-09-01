@@ -14,6 +14,7 @@ $_['db_port']           = DB_PORT;
 
 // Session
 $_['session_autostart'] = true;
+$_['session_name']      = 'USRSESSID';
 
 // Actions
 $_['action_pre_action'] = array(

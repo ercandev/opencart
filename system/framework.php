@@ -59,7 +59,7 @@ if ($config->get('session_autostart')) {
   }
   
   
-	$session->start('default', $session_id);
+	$session->start($session_id);
 	
 	// Require higher security for session cookies
 	$option = [
@@ -67,7 +67,7 @@ if ($config->get('session_autostart')) {
 	    'path'     => $config->get('session_path'),
 	    'domain'   => $config->get('session_domain'),
 	    'secure'   => $request->server['HTTPS'],
-	    'httponly' => false,
+	    'httponly' => true,
 	    'SameSite' => $config->get('session_samesite')
 	];
 	

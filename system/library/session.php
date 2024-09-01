@@ -26,16 +26,16 @@ class Session {
 	  return $this->session_id;
 	}
 		
-	public function start($key = 'default', $value = '') {
-	  if (!$value) {
+	public function start($session_id = '') {
+	  if (!$session_id) {
 	    $this->session_id = $this->createId();
-	  } elseif (preg_match('/^[a-zA-Z0-9,\-]{22,52}$/', $value)) {
-	    $this->session_id = $value;
+	  } elseif (preg_match('/^[a-zA-Z0-9,\-]{22,52}$/', $session_id)) {
+	    $this->session_id = $session_id;
 	  } else {
 	    throw new \Exception('Error: Invalid session ID!');
 	  }
 	  
-	  $this->data = $this->adaptor->read($value);
+	  $this->data = $this->adaptor->read($session_id);
 		
 		return $this->session_id;
 	}	
