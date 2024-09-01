@@ -17,7 +17,7 @@ class Password extends \Opencart\System\Engine\Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->load->model('account/customer');
 
-			$this->model_account_customer->editPassword($this->customer->getEmail(), $this->request->post['password']);
+			$this->model_account_customer->editPassword($this->customer->getId(), $this->request->post['password']);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
