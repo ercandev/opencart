@@ -354,6 +354,14 @@ class Register extends \Opencart\System\Engine\Controller {
 	}
 
 	private function validate() {
+	  $this->load->model('security/throttling');
+	  
+	  if (!$this->model_security_throttling->isIpAllowed('register', 5, 10)) {
+	    $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
+	    $this->error['warning'] = $this->language->get('error_throttling');
+	    return !$this->error;
+	  }
+
 		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
@@ -367,6 +375,7 @@ class Register extends \Opencart\System\Engine\Controller {
 		}
 
 		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+		  $this->model_security_throttling->save('register', $this->request->post['email']);
 			$this->error['warning'] = $this->language->get('error_exists');
 		}
 
@@ -444,6 +453,10 @@ class Register extends \Opencart\System\Engine\Controller {
 			if ($information_info && !isset($this->request->post['agree'])) {
 				$this->error['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
 			}
+		}
+		
+		if (!$this->error) {
+		  $this->model_security_throttling->save('register', $this->request->post['email']);
 		}
 
 		return !$this->error;

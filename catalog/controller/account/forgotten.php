@@ -100,10 +100,24 @@ class Forgotten extends \Opencart\System\Engine\Controller {
 	}
 
 	protected function validate() {
+	  $this->load->model('security/throttling');
+	  
+	  if (!$this->model_security_throttling->isIpAllowed('forgotten', 5, 10)) {
+	    $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
+	    $this->error['warning'] = $this->language->get('error_throttling');
+	    return !$this->error;
+	  }
+	  
 	  if (!isset($this->request->post['email'])|| !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['warning'] = $this->language->get('error_email');
 		}
-
+		
+		if (!$this->error && !$this->model_security_throttling->isDataAllowed('forgotten', $this->request->post['email'], 1, 3)) {
+		  $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
+		  $this->error['warning'] = $this->language->get('error_throttling');
+		  return !$this->error;
+		}
+		
 		$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
 
 		if ($customer_info && !$customer_info['approved']) {
