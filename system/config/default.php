@@ -74,3 +74,5 @@ $_['action_router']        = 'startup/router';
 $_['action_error']         = 'error/not_found';
 $_['action_pre_action']    = array();
 $_['action_event']         = array();
+
+$_['forgotten_expire']     = 6;

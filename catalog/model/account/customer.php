@@ -112,7 +112,7 @@ class Customer extends \Opencart\System\Engine\Model {
 	  
 	  if ($customer_info) {
 	    $this->db->query("UPDATE `" . DB_PREFIX . "customer_forgotten` SET status = '0' WHERE customer_id = '" . (int)$customer_info['customer_id'] . "'");
-	    $this->db->query("INSERT INTO `" . DB_PREFIX . "customer_forgotten` SET customer_id = '" . (int)$customer_info['customer_id'] . "', email = '" . $this->db->escape(utf8_strtolower($email)) . "', code = '" . $this->db->escape($code) . "', date_added = NOW(), status = '1'");
+	    $this->db->query("INSERT INTO `" . DB_PREFIX . "customer_forgotten` SET customer_id = '" . (int)$customer_info['customer_id'] . "', email = '" . $this->db->escape(utf8_strtolower($email)) . "', code = '" . $this->db->escape($code) . "', date_added = NOW(), date_expire = DATE_ADD(NOW(), INTERVAL " . $this->config->get('forgotten_expire') . " HOUR), status = '1'");
 	  }
 	}
 
@@ -133,7 +133,7 @@ class Customer extends \Opencart\System\Engine\Model {
 	}
 
 	public function getCustomerByCode($code) {
-		$query = $this->db->query("SELECT c.customer_id, c.firstname, c.lastname, c.email FROM `" . DB_PREFIX . "customer` c INNER JOIN `" . DB_PREFIX . "customer_forgotten` cf ON c.customer_id = cf.customer_id AND c.email = cf.email WHERE cf.code = '" . $this->db->escape($code) . "' AND cf.status = '1'");
+		$query = $this->db->query("SELECT c.customer_id, c.firstname, c.lastname, c.email FROM `" . DB_PREFIX . "customer` c INNER JOIN `" . DB_PREFIX . "customer_forgotten` cf ON c.customer_id = cf.customer_id AND c.email = cf.email WHERE cf.code = '" . $this->db->escape($code) . "' AND cf.date_expire > NOW() AND cf.status = '1'");
 
 		return $query->row;
 	}

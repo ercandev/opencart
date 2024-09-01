@@ -14,4 +14,4 @@ $_['entry_confirm']  = 'Parolanız (tekar)';
 // Error
 $_['error_password'] = 'Parolanız 4 ile 20 karakter arasında olmalıdır!';
 $_['error_confirm']  = 'Girdiğiniz parololar birbiri ile uyuşmuyor!';
-$_['error_code']     = 'Parola sıfırlama kodu geçersiz ya da daha önce kullanıldı!';
+$_['error_code']     = 'Parola sıfırlama kodunun süresi doldu ya da daha önce kullanıldı!';

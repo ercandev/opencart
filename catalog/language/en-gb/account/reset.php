@@ -14,4 +14,4 @@ $_['entry_confirm']  = 'Confirm';
 // Error
 $_['error_password'] = 'Password must be between 4 and 20 characters!';
 $_['error_confirm']  = 'Password and password confirmation do not match!';
-$_['error_code']     = 'Password reset code is invalid or was used previously!';
+$_['error_code']     = 'Password reset code is expired or was used previously!';
