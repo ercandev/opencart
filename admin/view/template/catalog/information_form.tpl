@@ -59,6 +59,15 @@
                     </div>
                   </div>
                   <div class="form-group required">
+	                <label class="col-sm-2 control-label" for="input-keyword<?php echo $language['language_id']; ?>"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
+	                <div class="col-sm-10">
+	                  <input type="text" name="url_alias[<?php echo $language['language_id']; ?>]" value="<?php echo isset($url_alias[$language['language_id']]) ? $url_alias[$language['language_id']] : ''; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword<?php echo $language['language_id']; ?>" class="form-control" />
+	                  <?php if (isset($error_url_alias[$language['language_id']])) { ?>
+                      <div class="text-danger"><?php echo $error_url_alias[$language['language_id']]; ?></div>
+                      <?php } ?>
+	                </div>
+	              </div>
+                  <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                     <div class="col-sm-10">
                       <input type="text" name="information_description[<?php echo $language['language_id']; ?>][meta_title]" value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_title'] : ''; ?>" placeholder="<?php echo $entry_meta_title; ?>" id="input-meta-title<?php echo $language['language_id']; ?>" class="form-control" />
@@ -113,15 +122,6 @@
                     </div>
                     <?php } ?>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
-                <div class="col-sm-10">
-                  <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" class="form-control" />
-                  <?php if ($error_keyword) { ?>
-                  <div class="text-danger"><?php echo $error_keyword; ?></div>
-                  <?php } ?>
                 </div>
               </div>
               <div class="form-group">

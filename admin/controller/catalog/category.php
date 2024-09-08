@@ -350,10 +350,10 @@ class Category extends \Opencart\System\Engine\Controller {
 			$data['error_meta_title'] = array();
 		}
 
-		if (isset($this->error['keyword'])) {
-			$data['error_keyword'] = $this->error['keyword'];
+		if (isset($this->error['url_alias'])) {
+			$data['error_url_alias'] = $this->error['url_alias'];
 		} else {
-			$data['error_keyword'] = '';
+			$data['error_url_alias'] = '';
 		}
 
 		if (isset($this->error['parent'])) {
@@ -465,12 +465,12 @@ class Category extends \Opencart\System\Engine\Controller {
 			$data['category_store'] = array(0);
 		}
 
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($category_info)) {
-			$data['keyword'] = $category_info['keyword'];
+		if (isset($this->request->post['url_alias'])) {
+		  $data['url_alias'] = $this->request->post['url_alias'];
+		} elseif (isset($this->request->get['category_id'])) {
+		  $data['url_alias'] = $this->model_catalog_category->getCategoryUrlAlias($this->request->get['category_id']);
 		} else {
-			$data['keyword'] = '';
+		  $data['url_alias'] = array();
 		}
 
 		if (isset($this->request->post['image'])) {
@@ -570,19 +570,21 @@ class Category extends \Opencart\System\Engine\Controller {
 				}
 			}
 		}
-
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
-
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-			if ($url_alias_info && isset($this->request->get['category_id']) && $url_alias_info['query'] != 'category_id=' . $this->request->get['category_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['category_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
+		
+		foreach ($this->request->post['url_alias'] as $language_id => $value) {
+		  if (utf8_strlen($value) > 0) {
+		    $this->load->model('catalog/url_alias');
+		    
+		    $url_alias_info = $this->model_catalog_url_alias->getUrlAlias($value);
+		    
+		    if ($url_alias_info && isset($this->request->get['category_id']) && $url_alias_info['query'] != 'category_id=' . $this->request->get['category_id']) {
+		      $this->error['url_alias'][$language_id] = sprintf($this->language->get('error_keyword'));
+		    }
+		    
+		    if ($url_alias_info && !isset($this->request->get['category_id'])) {
+		      $this->error['url_alias'][$language_id] = sprintf($this->language->get('error_keyword'));
+		    }
+		  }
 		}
 		
 		if ($this->error && !isset($this->error['warning'])) {

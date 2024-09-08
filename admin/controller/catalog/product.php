@@ -679,10 +679,10 @@ class Product extends \Opencart\System\Engine\Controller {
 			$data['error_model'] = '';
 		}
 
-		if (isset($this->error['keyword'])) {
-			$data['error_keyword'] = $this->error['keyword'];
+		if (isset($this->error['url_alias'])) {
+		  $data['error_url_alias'] = $this->error['url_alias'];
 		} else {
-			$data['error_keyword'] = '';
+		  $data['error_url_alias'] = '';
 		}
 
 		$url = '';
@@ -833,12 +833,12 @@ class Product extends \Opencart\System\Engine\Controller {
 			$data['product_store'] = array(0);
 		}
 
-		if (isset($this->request->post['keyword'])) {
-			$data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($product_info)) {
-			$data['keyword'] = $product_info['keyword'];
+		if (isset($this->request->post['url_alias'])) {
+		  $data['url_alias'] = $this->request->post['url_alias'];
+		} elseif (isset($this->request->get['product_id'])) {
+		  $data['url_alias'] = $this->model_catalog_product->getProductUrlAlias($this->request->get['product_id']);
 		} else {
-			$data['keyword'] = '';
+		  $data['url_alias'] = array();
 		}
 
 		if (isset($this->request->post['shipping'])) {
@@ -1340,18 +1340,20 @@ class Product extends \Opencart\System\Engine\Controller {
 			$this->error['model'] = $this->language->get('error_model');
 		}
 
-		if (utf8_strlen($this->request->post['keyword']) > 0) {
-			$this->load->model('catalog/url_alias');
-
-			$url_alias_info = $this->model_catalog_url_alias->getUrlAlias($this->request->post['keyword']);
-
-			if ($url_alias_info && isset($this->request->get['product_id']) && $url_alias_info['query'] != 'product_id=' . $this->request->get['product_id']) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
-
-			if ($url_alias_info && !isset($this->request->get['product_id'])) {
-				$this->error['keyword'] = sprintf($this->language->get('error_keyword'));
-			}
+		foreach ($this->request->post['url_alias'] as $language_id => $value) {
+		  if (utf8_strlen($value) > 0) {
+		    $this->load->model('catalog/url_alias');
+		    
+		    $url_alias_info = $this->model_catalog_url_alias->getUrlAlias($value);
+		    
+		    if ($url_alias_info && isset($this->request->get['product_id']) && $url_alias_info['query'] != 'product_id=' . $this->request->get['product_id']) {
+		      $this->error['url_alias'][$language_id] = sprintf($this->language->get('error_keyword'));
+		    }
+		    
+		    if ($url_alias_info && !isset($this->request->get['product_id'])) {
+		      $this->error['url_alias'][$language_id] = sprintf($this->language->get('error_keyword'));
+		    }
+		  }
 		}
 
 		if ($this->error && !isset($this->error['warning'])) {

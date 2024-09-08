@@ -46,6 +46,7 @@ $(document).ready(function() {
 		e.preventDefault();
 
 		$('#form-language input[name=\'code\']').val($(this).attr('name'));
+		$('#form-language input[name=\'redirect\']').val($(this).attr('redirect'));
 
 		$('#form-language').submit();
 	});

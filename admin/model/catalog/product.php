@@ -111,9 +111,11 @@ class Product extends \Opencart\System\Engine\Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
 			}
 		}
-
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		
+		foreach ($data['url_alias'] as $language_id => $value) {
+		  if (!empty($value)) {
+		    $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET language_id = '" . (int)$language_id . "', query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($value) . "'");
+		  }
 		}
 
 		if (isset($data['product_recurring'])) {
@@ -264,8 +266,10 @@ class Product extends \Opencart\System\Engine\Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
 
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		foreach ($data['url_alias'] as $language_id => $value) {
+		  if (!empty($value)) {
+		    $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET language_id = '" . (int)$language_id . "', query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($value) . "'");
+		  }
 		}
 
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "product_recurring` WHERE product_id = " . (int)$product_id);
@@ -336,7 +340,7 @@ class Product extends \Opencart\System\Engine\Model {
 	}
 
 	public function getProduct($product_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -435,6 +439,18 @@ class Product extends \Opencart\System\Engine\Model {
 		}
 
 		return $product_description_data;
+	}
+	
+	public function getProductUrlAlias($product_id) {
+	  $product_url_alias_data = array();
+	  
+	  $query = $this->db->query("SELECT language_id, keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
+	  
+	  foreach ($query->rows as $result) {
+	    $product_url_alias_data[$result['language_id']] = $result['keyword'];
+	  }
+	  
+	  return $product_url_alias_data;
 	}
 
 	public function getProductCategories($product_id) {

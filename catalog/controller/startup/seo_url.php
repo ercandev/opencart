@@ -45,6 +45,14 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 					if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id') {
 						$this->request->get['route'] = $query->row['query'];
 					}
+					
+					if ($query->row['language_id']) {
+  					$this->load->model('localisation/language');
+  					
+  					$language_info = $this->model_localisation_language->getLanguage($query->row['language_id']);
+  					
+  					$this->session->data['language'] = $language_info['code'];
+					}
 				} else {
 					$this->request->get['route'] = 'error/not_found';
 
@@ -74,11 +82,27 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 		$data = array();
 
 		parse_str($url_info['query'], $data);
+		
+		$language_id = 0;
+		if (isset($data['language'])) {
+		  $this->load->model('localisation/language');
+		  
+		  $language_info = $this->model_localisation_language->getLanguageByCode($data['language']);
+		  
+		  if ($language_info) {
+		    $language_id = $language_info['language_id'];
+		  } else {
+		    $language_id = $this->config->get('config_language_id');
+		  }
+		  
+		} else {
+		  $language_id = $this->config->get('config_language_id');
+		}
 
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
 				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
-					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
+				  $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "' AND (`language_id` = '" . (int)$language_id . "' OR `language_id` = '0') ORDER BY `language_id` DESC");
 
 					if ($query->num_rows && $query->row['keyword']) {
 						$url .= '/' . $query->row['keyword'];
@@ -89,7 +113,7 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 					$categories = explode('_', $value);
 
 					foreach ($categories as $category) {
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'category_id=" . (int)$category . "'");
+					  $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'category_id=" . (int)$category . "' AND (`language_id` = '" . (int)$language_id . "' OR `language_id` = '0') ORDER BY `language_id` DESC");
 
 						if ($query->num_rows && $query->row['keyword']) {
 							$url .= '/' . $query->row['keyword'];
@@ -107,6 +131,8 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 
 		if ($url) {
 			unset($data['route']);
+			unset($data['language']);
+			unset($data['_route_']);
 
 			$query = '';
 

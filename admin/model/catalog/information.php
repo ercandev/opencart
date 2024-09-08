@@ -22,8 +22,10 @@ class Information extends \Opencart\System\Engine\Model {
 			}
 		}
 
-		if (isset($data['keyword'])) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		foreach ($data['url_alias'] as $language_id => $value) {
+		  if (!empty($value)) {
+		    $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET language_id = '" . (int)$language_id . "', query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($value) . "'");
+		  }
 		}
 
 		$this->cache->delete('information');
@@ -58,8 +60,10 @@ class Information extends \Opencart\System\Engine\Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
 
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		foreach ($data['url_alias'] as $language_id => $value) {
+		  if (!empty($value)) {
+		    $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET language_id = '" . (int)$language_id . "', query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($value) . "'");
+		  }
 		}
 
 		$this->cache->delete('information');
@@ -76,7 +80,7 @@ class Information extends \Opencart\System\Engine\Model {
 	}
 
 	public function getInformation($information_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "') AS keyword FROM " . DB_PREFIX . "information WHERE information_id = '" . (int)$information_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "information WHERE information_id = '" . (int)$information_id . "'");
 
 		return $query->row;
 	}
@@ -148,6 +152,18 @@ class Information extends \Opencart\System\Engine\Model {
 		}
 
 		return $information_description_data;
+	}
+	
+	public function getInformationUrlAlias($information_id) {
+	  $information_url_alias_data = array();
+	  
+	  $query = $this->db->query("SELECT language_id, keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
+	  
+	  foreach ($query->rows as $result) {
+	    $information_url_alias_data[$result['language_id']] = $result['keyword'];
+	  }
+	  
+	  return $information_url_alias_data;
 	}
 
 	public function getInformationStores($information_id) {

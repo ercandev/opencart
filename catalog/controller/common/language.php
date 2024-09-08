@@ -18,29 +18,33 @@ class Language extends \Opencart\System\Engine\Controller {
 
 		foreach ($results as $result) {
 			if ($result['status']) {
+			  
+			  $redirect = '';
+			  if (!isset($this->request->get['route'])) {
+			    $redirect = $this->url->link('common/home');
+			  } else {
+			    $url_data = $this->request->get;
+			    $url_data['language'] = $result['code'];
+			    
+			    $route = $url_data['route'];
+			    
+			    unset($url_data['route']);
+			    
+			    $url = '';
+			    
+			    if ($url_data) {
+			      $url = '&' . urldecode(http_build_query($url_data, '', '&'));
+			    }
+			    
+			    $redirect = $this->url->link($route, $url, $this->request->server['HTTPS']);
+			  }
+			  
 				$data['languages'][] = array(
-					'name' => $result['name'],
-					'code' => $result['code']
+					'name'     => $result['name'],
+					'code'     => $result['code'],
+			    'redirect' => $redirect
 				);
 			}
-		}
-
-		if (!isset($this->request->get['route'])) {
-			$data['redirect'] = $this->url->link('common/home');
-		} else {
-			$url_data = $this->request->get;
-
-			$route = $url_data['route'];
-
-			unset($url_data['route']);
-
-			$url = '';
-
-			if ($url_data) {
-				$url = '&' . urldecode(http_build_query($url_data, '', '&'));
-			}
-
-			$data['redirect'] = $this->url->link($route, $url, $this->request->server['HTTPS']);
 		}
 
 		return $this->load->view('common/language', $data);
