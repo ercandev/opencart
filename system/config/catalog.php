@@ -34,6 +34,20 @@ $_['action_pre_action'] = array(
 	'startup/seo_url'
 );
 
+// Throttling
+$_['throttling_default_ip_per_hour']      = 5;
+$_['throttling_default_ip_per_day']       = 10;
+$_['throttling_default_data_per_hour']    = 1;
+$_['throttling_default_data_per_day']     = 3;
+
+$_['throttling_forgotten_ip_per_hour']    = 5;
+$_['throttling_forgotten_ip_per_day']     = 10;
+$_['throttling_forgotten_data_per_hour']  = 1;
+$_['throttling_forgotten_data_per_day']   = 3;
+
+$_['throttling_register_ip_per_hour']     = 5;
+$_['throttling_register_ip_per_day']      = 10;
+
 // Action Events
 $_['action_event'] = array(
     'view/*/before'                           => ['event/theme', 'event/language'],

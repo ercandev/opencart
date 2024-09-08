@@ -102,7 +102,7 @@ class Forgotten extends \Opencart\System\Engine\Controller {
 	protected function validate() {
 	  $this->load->model('security/throttling');
 	  
-	  if (!$this->model_security_throttling->isIpAllowed('forgotten', 5, 10)) {
+	  if (!$this->model_security_throttling->isIpAllowed('forgotten')) {
 	    $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
 	    $this->error['warning'] = $this->language->get('error_throttling');
 	    return !$this->error;
@@ -112,7 +112,7 @@ class Forgotten extends \Opencart\System\Engine\Controller {
 			$this->error['warning'] = $this->language->get('error_email');
 		}
 		
-		if (!$this->error && !$this->model_security_throttling->isDataAllowed('forgotten', $this->request->post['email'], 1, 3)) {
+		if (!$this->error && !$this->model_security_throttling->isDataAllowed('forgotten', $this->request->post['email'])) {
 		  $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
 		  $this->error['warning'] = $this->language->get('error_throttling');
 		  return !$this->error;

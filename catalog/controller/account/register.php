@@ -356,7 +356,7 @@ class Register extends \Opencart\System\Engine\Controller {
 	private function validate() {
 	  $this->load->model('security/throttling');
 	  
-	  if (!$this->model_security_throttling->isIpAllowed('register', 5, 10)) {
+	  if (!$this->model_security_throttling->isIpAllowed('register')) {
 	    $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 429 Too Many Requests');
 	    $this->error['warning'] = $this->language->get('error_throttling');
 	    return !$this->error;
